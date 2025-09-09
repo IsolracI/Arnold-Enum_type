@@ -26,18 +26,17 @@ public enum Planeta {
         return this.radio;
     }
 
-    private double calcularGravedadSuperficie(Planeta planeta) {
-        double g = 6.67300 * Math.pow(10, -11) * (Math.pow(planeta.getRadio(), 3) / planeta.getMasa() * Math.pow(9.8, 2));
-        return planeta.
+    private double calcularGravedadSuperficie() {
+        double g = 6.67300 * Math.pow(10, -11) * (Math.pow(getRadio(), 3) / getMasa() * Math.pow(9.8, 2));
+        return g * (getMasa()/getRadio()); 
     }
 
-    private double calcularMasa(double pesoTierra) {
-        return pesoTierra / (Planeta.EARTH.getMasa() / Planeta.EARTH.getRadio() * Planeta.EARTH.getRadio());
+    private double calcularMasaPropia(double pesoTierra) {
+        return pesoTierra / EARTH.calcularGravedadSuperficie();
     }
 
     public double pesoSuperficie(double peso) {
-        
-    }
-    
+        return calcularMasaPropia(peso) * calcularGravedadSuperficie();
+    }    
 
 }
